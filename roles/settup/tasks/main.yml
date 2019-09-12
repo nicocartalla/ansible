@@ -1,13 +1,12 @@
 ---
 
-- name: Install SELinux python module
-  package: name={{ nginx_python_selinux_pkgs | default(omit)}} state=present
-  when: ansible_os_family == "RedHat"
-
-- name: Set SELinux boolean to allow nginx
-  seboolean: name=httpd_setrlimit state=yes persistent=yes
-    - libselinux-python
-    - libsemanage-python
+- name: Set up SELinux permissive mode
+  lineinfile:
+    path: /etc/selinux/config
+    regexp: '^SELINUX='
+    line: SELINUX=permissive
+  tags:
+    - selinux
 
 - name: Install epel-release repo..
   yum: 
