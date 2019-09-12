@@ -1,23 +1,23 @@
 ---
-- hosts: all
+- hosts: localhost
   remote_user: root
   roles:
     - role: settup
       when: "ansible_os_family == 'RedHat'"
 
-- hosts: all  
+- hosts: localhost  
   remote_user: root
   roles:
     - role: nginx
       when: "ansible_os_family == 'RedHat'"
 
-- hosts: all  
+- hosts: localhost  
   remote_user: root 
   roles:
     - role: mysql
       when: "ansible_os_family == 'RedHat'"
 
-- hosts: all
+- hosts: localhost
   remote_user: root
   roles:
     - role: php
