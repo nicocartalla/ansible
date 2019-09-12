@@ -3,7 +3,3 @@
 php_group: "nginx"
 php_user: "nginx"
 mysql_root_password: "password"
-
-nginx_python_selinux_pkgs:
-  - libselinux-python
-  - libsemanage-python

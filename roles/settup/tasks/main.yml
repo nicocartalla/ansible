@@ -1,10 +1,10 @@
 ---
 
 - name: Set up SELinux permissive mode
-  lineinfile:
+  replace:
     path: /etc/selinux/config
     regexp: '^SELINUX='
-    line: SELINUX=permissive
+    replace: SELINUX=permissive
   tags:
     - selinux
 
