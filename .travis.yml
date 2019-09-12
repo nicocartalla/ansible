@@ -6,7 +6,7 @@ services:
 
 before_install:
   - 'sudo docker pull centos:7'
-  - 'sudo docker build --no-cache --rm --file=travis/Dockerfile.centos-7 --tag=centos-7:ansible travis'
+  - 'sudo docker build --no-cache --rm --file=Dockerfile.centos-7 --tag=centos-7:ansible travis'
 
 script:
   - container_id=$(mktemp)
