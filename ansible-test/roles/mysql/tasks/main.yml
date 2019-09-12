@@ -1,0 +1,23 @@
+---
+
+- name: Install Mariadb and packages..
+  yum: 
+    name:
+       - mariadb
+       - mariadb-server
+       - MySQL-python
+    state: present
+
+- name: Start and enable service
+  service: name=mariadb state=started enabled=yes
+  
+#- name: Set root password 
+#  mysql_user: user=root password="{{ mysql_root_password }}" host=localhost
+  
+- name: Set root Password
+  mysql_user: login_password={{ mysql_root_password }} check_implicit_admin=yes name=root host={{ item }} password={{ mysql_root_password }} state=present 
+  with_items:
+    - localhost
+    - 127.0.0.1
+    - ::1
+  when: mysql_root_password is defined

@@ -1,0 +1,51 @@
+---
+- name: Install php and packages..
+  yum: 
+    name:
+       - php
+       - php-mysql
+       - php-fpm
+    state: present
+
+- name: Setting up php security..
+  replace:
+    path: /etc/php.ini
+    regexp: '^cgi.fix_pathinfo='
+    replace: cgi.fix_pathinfo=0
+
+- name: Setting up php listen..
+  replace:
+    path: /etc/php-fpm.d/www.conf
+    regexp: 'listen = (.*)?\s*(>*)'
+    replace: "listen = /var/run/php-fpm/php-fpm.sock"
+
+- name: Setting up php listen owner..
+  replace:
+   path: /etc/php-fpm.d/www.conf
+   regexp: '#listen.owner = nobody'
+   replace: "listen.owner = nobody"
+
+- name: Setting up php listen group..
+  replace:
+    path: /etc/php-fpm.d/www.conf
+    regexp: '#listen.group = nobody'
+    replace: "listen.group = nobody"
+
+- name: Setting up php group..
+  replace:
+    path: /etc/php-fpm.d/www.conf
+    regexp: 'group = apache '
+    replace: "group = {{ php_group }}"
+
+- name: Setting up php user..
+  replace:
+    path: /etc/php-fpm.d/www.conf
+    regexp: 'user = apache'
+    replace: "user = {{ php_user }}"
+
+- name: Copying info.php
+  copy: src=info.php dest=/usr/share/nginx/html/
+
+- name: Setting up service..
+  command: sudo systemctl enable php-fpm
+  notify: restart php-fpm

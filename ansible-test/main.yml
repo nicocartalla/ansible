@@ -1,0 +1,25 @@
+---
+
+- hosts: all
+  remote_user: root
+  roles:
+    - role: settup
+      when: "ansible_os_family == 'RedHat'"
+
+- hosts: all  
+  remote_user: root
+  roles:
+    - role: nginx
+      when: "ansible_os_family == 'RedHat'"
+
+- hosts: all  
+  remote_user: root 
+  roles:
+    - role: mysql
+      when: "ansible_os_family == 'RedHat'"
+
+- hosts: all
+  remote_user: root
+  roles:
+    - role: php
+      when: "ansible_os_family == 'RedHat'"
