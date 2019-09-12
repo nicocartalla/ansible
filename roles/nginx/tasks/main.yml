@@ -8,6 +8,8 @@
 - name: Setting up nginx..
   template: src=default.conf.j2 dest=/etc/nginx/conf.d/default.conf
   notify: restart nginx
+  tags:
+    - ip_cnf
   
 - name: Setting up service..
   command: sudo systemctl enable nginx
