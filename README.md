@@ -17,4 +17,4 @@ Para ejecutar el mismo pipeline en otro host:
 
 Con el flag `–k` solicitamos a ansible que nos pida contraseña para conectarnos con el host utilizando el usuario root.
 
-Este playbook cuenta con testeo de Travis-CI el cual ejecuta todos los roles sobre un contenedor docker  que parte de una imagen de Centos-7, para poder ejecutarlo realizar un Pull Request al repositorio en github y acceder a Travis [https://travis-ci.org/nicocartalla/ansible](https://travis-ci.org/nicocartalla/ansible)
+Este playbook cuenta con testeo de Travis-CI el cual ejecuta todos los roles sobre un contenedor docker  que parte de una imagen de Centos-7, para poder ejecutarlo realizar un Pull Request al repositorio en github y acceder a Travis [https://travis-ci.org/nicocartalla/ansible-LEMP](https://travis-ci.org/nicocartalla/ansible)
